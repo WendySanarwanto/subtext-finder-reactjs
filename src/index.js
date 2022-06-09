@@ -8,7 +8,7 @@ import Result from './Result';
 import GetIndexesOfMatchedSubtext from './SubtextFinderApi';
 
 class App extends React.Component {
-  state = { enableInputs: true, text: '', subtext: '', result: [] };
+  state = { enableInputs: true, text: '', subtext: '', result: null };
 
   onProcessButtonClicked = async (e) => {
     console.log('Process button is clicked.');
@@ -22,10 +22,12 @@ class App extends React.Component {
       const subtext = e.subtext;
       let result = await GetIndexesOfMatchedSubtext(text, subtext);
       //  Upon successfull call, pass in the text, subtext, result into <Result />
+      // console.log('result: \n');
+      // console.log(result.data)
       this.setState({
         text: e.text,
         subtext: e.subtext,
-        result: result
+        result: result.data
       });
     } catch(err) {
       // TODO: Upon failed call, display error band
