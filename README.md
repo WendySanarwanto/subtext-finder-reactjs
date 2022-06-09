@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# subtext-finder-reactjs
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React.js demo app which demonstrate finding subtext within an entered text.
 
 ## Available Scripts
 
