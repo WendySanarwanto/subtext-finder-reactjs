@@ -2,13 +2,21 @@ import React from 'react';
 
 class Result extends React.Component {
 
+  isNonAlphanumeric(input) {
+    return input.match(/[\W_]+/g);
+  }
+
   renderResultsSegment() {
     const subtext = this.props.subtext;
     const subtextLength = subtext.length;
     const indexes = this.props.indexes;
     let renderedText = "<p>";
     if (this.props.text && indexes && indexes.length > 0) {
-      let splittedWords = this.props.text.split( new RegExp(subtext, 'i')  );
+      let regexInput = subtext;
+      if (this.isNonAlphanumeric(subtext)) {
+        regexInput = "\\"+subtext;
+      }
+      let splittedWords = this.props.text.split( new RegExp(regexInput, 'i')  );
 
       for(let i =0, j=0, k=0; i < splittedWords.length; i++) {
         const chunk = splittedWords[i];
