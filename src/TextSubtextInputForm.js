@@ -11,6 +11,11 @@ class TextSubtextInputForm extends React.Component {
     });
   }
 
+  renderButtonOrSpinner() {
+    return this.props.isEnabled ? <button type="button" className="ui submit primary button" onClick={ e => this.onProcessButtonClicked(e) }>Process</button> :  
+          <div class="ui active inline loader"></div>;
+  }
+
   render() {
     return (
       <div className="ui segment">
@@ -25,7 +30,7 @@ class TextSubtextInputForm extends React.Component {
                 <input type="text" placeholder="Subtext to search" disabled={ !this.props.isEnabled } onChange={ e => this.setState({ subtext: e.target.value }) } value={ this.state.subtext }/> 
               </div>
             </div>
-            <button type="button" className="ui submit primary button" disabled={ !this.props.isEnabled } onClick={ e => this.onProcessButtonClicked(e) }>Process</button>
+            { this.renderButtonOrSpinner() }
         </div>
       </div>
     );
