@@ -31,7 +31,7 @@ class Result extends React.Component {
       let stringifiedIndexes = '';
       if (indexes.length === 1) {
         stringifiedIndexes = indexes[0]+1;
-      } else if (indexes.length > 0){
+      } else if (indexes.length > 1){
         for(let i=0; i < indexes.length; i++) {
           if (i+2 === indexes.length) { 
             stringifiedIndexes = stringifiedIndexes + (indexes[i]+1) + ' ';
@@ -41,7 +41,9 @@ class Result extends React.Component {
             stringifiedIndexes = stringifiedIndexes + (indexes[i]+1) + ', ';
           }
         }
+      }
 
+      if (indexes.length > 0) {
         return (
           <div className="ui segment">
             <div className="ui vertical segment">          
@@ -51,8 +53,8 @@ class Result extends React.Component {
               <p>Found matched subtext on these index(es): { stringifiedIndexes }.</p>
             </div>
           </div>
-        );
-      } 
+        );        
+      }
 
       return ( 
         <div className="ui segment">
