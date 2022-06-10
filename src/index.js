@@ -8,11 +8,12 @@ import Result from './Result';
 import GetIndexesOfMatchedSubtext from './SubtextFinderApi';
 
 class App extends React.Component {
-  state = { enableInputs: true, text: '', subtext: '', result: null };
+  state = { enableInputs: true, text: '', subtext: '', result: null, validationError: null };
 
   onProcessButtonClicked = async (e) => {
-    console.log('Process button is clicked.');
-    console.log(e);
+    // console.log('Process button is clicked.');
+    // console.log(e);
+
     // Disable inputs
     this.setState( { enableInputs: false });
     // TODO: Show progress spinner
@@ -20,21 +21,29 @@ class App extends React.Component {
       // Call API using axios
       const text = e.text;
       const subtext = e.subtext;
-      let result = await GetIndexesOfMatchedSubtext(text, subtext);
-      //  Upon successfull call, pass in the text, subtext, result into <Result />
-      // console.log('result: \n');
-      // console.log(result.data)
-      this.setState({
-        text: e.text,
-        subtext: e.subtext,
-        result: result.data
-      });
+
+      // Validate subtext - should not be blank
+      if (!subtext || ( subtext.trim() === '')) {
+        this.setState({ validationError: "Subtext are not allower to be left as blank or as whitespaces only." });
+      }
+      else {
+        this.setState({ validationError: null });
+        let result = await GetIndexesOfMatchedSubtext(text, subtext);
+
+        //  Upon successfull call, pass in the text, subtext, result into <Result />
+        // console.log('result: \n');
+        // console.log(result.data)
+        this.setState({
+          text: e.text,
+          subtext: e.subtext,
+          result: result.data          
+        });
+      }
     } catch(err) {
       // TODO: Upon failed call, display error band
       console.log(err);
     }
     // re-enable inputs
-    // setTimeout(() => this.setState( { enableInputs: true }), 3000);
     this.setState( { enableInputs: true });
   };
 
@@ -44,7 +53,7 @@ class App extends React.Component {
         <h1>Find subtext on a Text </h1>
         <hr />
         
-        <TextSubtextInputForm onProcessClicked={ this.onProcessButtonClicked } isEnabled= { this.state.enableInputs }/>
+        <TextSubtextInputForm onProcessClicked={ this.onProcessButtonClicked } isEnabled= { this.state.enableInputs } errorMessage = { this.state.validationError }/>
 
         <Result text={ this.state.text } subtext={ this.state.subtext } indexes={ this.state.result } />
 
