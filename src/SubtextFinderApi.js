@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_URL= 'https://subtext-finder-api-resource.azure-api.net/v1';
+// const API_URL= 'https://subtext-finder-api-resource.azure-api.net/v1';
+const API_URL= 'https://subtext-finder-apidev001.azurewebsites.net/';
 
 const GetIndexesOfMatchedSubtext = (text, subtext) => {
   console.log(`text: ${encodeURIComponent(text)}, subtext: ${encodeURIComponent(subtext)}`);
