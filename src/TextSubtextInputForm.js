@@ -13,7 +13,7 @@ class TextSubtextInputForm extends React.Component {
 
   renderButtonOrSpinner() {
     return this.props.isEnabled ? <button type="button" className="ui submit primary button" onClick={ e => this.onProcessButtonClicked(e) }>Process</button> :  
-          <div class="ui active inline loader"></div>;
+          <div className="ui active inline loader"></div>;
   }
 
   render() {
