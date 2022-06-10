@@ -27,17 +27,18 @@ class Result extends React.Component {
     renderedText += "</p>";
 
     if (indexes ) {
+      // Displayed as 1 based index
       let stringifiedIndexes = '';
       if (indexes.length === 1) {
-        stringifiedIndexes = indexes[0];
+        stringifiedIndexes = indexes[0]+1;
       } else if (indexes.length > 0){
         for(let i=0; i < indexes.length; i++) {
           if (i+2 === indexes.length) { 
-            stringifiedIndexes = stringifiedIndexes + indexes[i] + ' ';
+            stringifiedIndexes = stringifiedIndexes + (indexes[i]+1) + ' ';
           } else if (i+1 === indexes.length) {
-            stringifiedIndexes = stringifiedIndexes + 'and ' + indexes[i];
+            stringifiedIndexes = stringifiedIndexes + 'and ' + (indexes[i]+1);
           } else {
-            stringifiedIndexes = stringifiedIndexes + indexes[i] + ', ';
+            stringifiedIndexes = stringifiedIndexes + (indexes[i]+1) + ', ';
           }
         }
 
