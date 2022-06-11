@@ -8,14 +8,20 @@ import Result from './Result';
 import GetIndexesOfMatchedSubtext from './SubtextFinderApi';
 
 class App extends React.Component {
-  state = { enableInputs: true, text: '', subtext: '', result: null, validationError: null };
+  state = { enableInputs: true, text: '', subtext: '', result: null, validationError: null, displayResultSegment: false };
+
+  renderResultSegment = () => {
+    if (this.state.displayResultSegment) {
+      return <Result text={ this.state.text } subtext={ this.state.subtext } indexes={ this.state.result } />
+    }
+  }
 
   onProcessButtonClicked = async (e) => {
     // console.log('Process button is clicked.');
     // console.log(e);
 
     // Disable inputs
-    this.setState( { enableInputs: false });
+    this.setState( { enableInputs: false, displayResultSegment: false });
     // TODO: Show progress spinner
     try { 
       // Call API using axios
@@ -36,7 +42,8 @@ class App extends React.Component {
         this.setState({
           text: e.text,
           subtext: e.subtext,
-          result: result.data          
+          result: result.data,
+          displayResultSegment: true       
         });
       }
     } catch(err) {
@@ -55,7 +62,7 @@ class App extends React.Component {
         
         <TextSubtextInputForm onProcessClicked={ this.onProcessButtonClicked } isEnabled= { this.state.enableInputs } errorMessage = { this.state.validationError }/>
 
-        <Result text={ this.state.text } subtext={ this.state.subtext } indexes={ this.state.result } />
+        { this.renderResultSegment() }        
 
       </div>
     );

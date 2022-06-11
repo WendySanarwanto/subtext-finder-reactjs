@@ -35,7 +35,7 @@ class TextSubtextInputForm extends React.Component {
     if ( this.props.errorMessage ) {
       return (
         <div className="ui negative message">
-          <i className="close icon"></i>
+          {/* <i className="close icon"></i> */}
           <div className="header">
             Error
           </div> 
