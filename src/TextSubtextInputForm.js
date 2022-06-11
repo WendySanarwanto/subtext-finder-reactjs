@@ -34,9 +34,9 @@ class TextSubtextInputForm extends React.Component {
   renderValidationError() {
     if ( this.props.errorMessage ) {
       return (
-        <div class="ui negative message">
-          <i class="close icon"></i>
-          <div class="header">
+        <div className="ui negative message">
+          <i className="close icon"></i>
+          <div className="header">
             Error
           </div> 
           <p>
