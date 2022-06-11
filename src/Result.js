@@ -2,8 +2,17 @@ import React from 'react';
 
 class Result extends React.Component {
 
-  isNonAlphanumeric(input) {
-    return input.match(/[\W_]+/g);
+  // isNonAlphanumeric(input) {
+  //   return input.match(/[\W_]+/g);
+  // }
+
+  handleDotChar(input) {
+    let result = input;
+    if (result.includes('.')) {
+      result = result.replaceAll('.', '[.]+');
+    } 
+
+    return result;
   }
 
   renderResultsSegment() {
@@ -13,9 +22,10 @@ class Result extends React.Component {
     let renderedText = "<p>";
     if (this.props.text && indexes && indexes.length > 0) {
       let regexInput = subtext;
-      if (this.isNonAlphanumeric(subtext)) {
-        regexInput = "\\"+subtext;
-      }
+      // if (this.isNonAlphanumeric(subtext)) {
+      //   regexInput = "\\"+subtext;
+      // }
+      regexInput = this.handleDotChar(subtext);
       let splittedWords = this.props.text.split( new RegExp(regexInput, 'i')  );
 
       for(let i =0, j=0, k=0; i < splittedWords.length; i++) {
