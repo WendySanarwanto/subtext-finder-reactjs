@@ -16,8 +16,15 @@ You may also see any lint errors in the console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches integration test script against running application hosted on http://localhost:3000, by default.\
+The test scripts are using [playwright test runner](https://playwright.dev/) and looking for target application's defined in `TARGET_URL` environment variable. Should the environment variable is not available on host machine, then the test script will run against the application where is hosted on https://localhost:3000 . You can define the `TARGET_URL` environment variable either by define it in your host machine or define it inside `.env` file, where should be created inside project's root folder.
+Below is the example of the `.env` file:
+
+```bash
+
+TARGET_URL=https://subtext-finder-reactjs.herokuapp.com/
+
+```
 
 ### `npm run build`
 

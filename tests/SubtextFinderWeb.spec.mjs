@@ -1,11 +1,14 @@
 import {test, expect} from '@playwright/test';
+import dotenv from 'dotenv';
 
-const TARGET_APP_URL = 'http://localhost:3000';
-// const TARGET_APP_URL = 'https://subtext-finder-reactjs.herokuapp.com/';
+dotenv.config();
+
+const TARGET_APP_URL = process.env.TARGET_URL || 'http://localhost:3000';
 
 test.describe('Find subtext from entered Text', () => {
     test.beforeEach(async ({ page }) => {
         // Go to application
+        // console.log('TARGET_APP_URL: '+TARGET_APP_URL);
         await page.goto(TARGET_APP_URL);
     });
 
