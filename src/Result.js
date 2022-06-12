@@ -73,7 +73,7 @@ class Result extends React.Component {
               <h2 dangerouslySetInnerHTML={ { __html: renderedText } }/>
             </div>
             <div className="ui vertical segment">
-              <p>Found matched subtext on these index(es): { stringifiedIndexes }.</p>
+              <p>Found matched subtext on these index(es): <span id="indexes">{ stringifiedIndexes }</span>.</p>
             </div>
           </div>
         );        

@@ -16,25 +16,25 @@ class TextSubtextInputForm extends React.Component {
       <div className="two fields">            
         <div className="field">
           <label>Enter text</label>
-          <input type="text" placeholder="Text" disabled={ !this.props.isEnabled } onChange={ e => this.setState({ text: e.target.value }) }  value={ this.state.text } /> 
+          <input id="textInput" type="text" placeholder="Text" disabled={ !this.props.isEnabled } onChange={ e => this.setState({ text: e.target.value }) }  value={ this.state.text } /> 
         </div>
         <div className="field">
           <label>Enter Subtext</label>
-          <input type="text" placeholder="Subtext to search" disabled={ !this.props.isEnabled } onChange={ e => this.setState({ subtext: e.target.value }) } value={ this.state.subtext }/> 
+          <input id="subtextInput" type="text" placeholder="Subtext to search" disabled={ !this.props.isEnabled } onChange={ e => this.setState({ subtext: e.target.value }) } value={ this.state.subtext }/> 
         </div>
       </div>      
     );
   }
 
   renderButtonOrSpinner() {
-    return this.props.isEnabled ? <button type="button" className="ui submit primary button" onClick={ e => this.onProcessButtonClicked(e) }>Process</button> :  
+    return this.props.isEnabled ? <button id="btnProcess" type="button" className="ui submit primary button" onClick={ e => this.onProcessButtonClicked(e) }>Process</button> :  
           <div className="ui active inline loader"></div>;
   }
 
   renderValidationError() {
     if ( this.props.errorMessage ) {
       return (
-        <div className="ui negative message">
+        <div id="validationError" className="ui negative message">
           {/* <i className="close icon"></i> */}
           <div className="header">
             Error
