@@ -15,6 +15,10 @@ class Result extends React.Component {
     return result;
   }
 
+  handleBackslashChar(input) {
+    return input.replaceAll('\\', '\\\\');
+  } 
+
   renderResultsSegment() {
     const subtext = this.props.subtext;
     const subtextLength = subtext.length;
@@ -26,6 +30,7 @@ class Result extends React.Component {
       //   regexInput = "\\"+subtext;
       // }
       regexInput = this.handleDotChar(subtext);
+      regexInput = this.handleBackslashChar(regexInput);
       let splittedWords = this.props.text.split( new RegExp(regexInput, 'i')  );
 
       for(let i =0, j=0, k=0; i < splittedWords.length; i++) {
