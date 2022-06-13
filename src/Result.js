@@ -6,13 +6,21 @@ class Result extends React.Component {
   //   return input.match(/[\W_]+/g);
   // }
 
-  handleDotChar(input) {
+  handleSpecialChar(input, specialChar) {
     let result = input;
-    if (result.includes('.')) {
-      result = result.replaceAll('.', '[.]+');
+    if (result.includes(specialChar)) {
+      result = result.replaceAll(specialChar, `[${specialChar}]+`);
     } 
 
     return result;
+  }
+
+  handleDotChar(input) {
+    return this.handleSpecialChar(input, '.');
+  }
+
+  handleQuestionChar(input) {
+    return this.handleSpecialChar(input, '?');
   }
 
   handleBackslashChar(input) {
@@ -30,6 +38,7 @@ class Result extends React.Component {
       //   regexInput = "\\"+subtext;
       // }
       regexInput = this.handleDotChar(subtext);
+      regexInput = this.handleQuestionChar(regexInput);
       regexInput = this.handleBackslashChar(regexInput);
       let splittedWords = this.props.text.split( new RegExp(regexInput, 'i')  );
 
