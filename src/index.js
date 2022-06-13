@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import './index.css';
-// import App from './App';
-// import reportWebVitals from './reportWebVitals';
+
 import TextSubtextInputForm from './TextSubtextInputForm';
 import Result from './Result';
 import GetIndexesOfMatchedSubtext from './SubtextFinderApi';
@@ -19,9 +17,6 @@ class App extends React.Component {
   }
 
   onProcessButtonClicked = async (e) => {
-    // console.log('Process button is clicked.');
-    // console.log(e);
-
     // Disable inputs
     this.setState( { enableInputs: false, displayResultSegment: false });
     // TODO: Show progress spinner
@@ -39,8 +34,6 @@ class App extends React.Component {
         let result = await GetIndexesOfMatchedSubtext(text, subtext);
 
         //  Upon successfull call, pass in the text, subtext, result into <Result />
-        // console.log('result: \n');
-        // console.log(result.data)
         this.setState({
           text: e.text,
           subtext: e.subtext,

@@ -2,31 +2,6 @@ import React from 'react';
 
 class Result extends React.Component {
 
-  // isNonAlphanumeric(input) {
-  //   return input.match(/[\W_]+/g);
-  // }
-
-  handleSpecialChar(input, specialChar) {
-    let result = input;
-    if (result.includes(specialChar)) {
-      result = result.replaceAll(specialChar, `[${specialChar}]+`);
-    } 
-
-    return result;
-  }
-
-  handleDotChar(input) {
-    return this.handleSpecialChar(input, '.');
-  }
-
-  handleQuestionChar(input) {
-    return this.handleSpecialChar(input, '?');
-  }
-
-  handleBackslashChar(input) {
-    return input.replaceAll('\\', '\\\\');
-  } 
-
   renderResultsSegment() {
     const subtext = this.props.subtext;
     const subtextLength = subtext.length;
@@ -54,30 +29,6 @@ class Result extends React.Component {
           i++;
         }
       }
-
-      // let regexInput = subtext;
-      // if (this.isNonAlphanumeric(subtext)) {
-      //   regexInput = "\\"+subtext;
-      // }
-
-      // regexInput = this.handleDotChar(subtext);
-      // regexInput = this.handleQuestionChar(regexInput);
-      // regexInput = this.handleBackslashChar(regexInput);
-      // let splittedWords = this.props.text.split( new RegExp(regexInput, 'i')  );
-
-      // for(let i =0, j=0, k=0; i < splittedWords.length; i++) {
-      //   const chunk = splittedWords[i];
-      //   const index = indexes[j];
-      //   k += chunk.length;
-      //   renderedText += chunk;
-      //   if (index === k) {
-      //     renderedText += `<u>${subtext}</u>`;
-      //     // move to next index 
-      //     j++;
-      //     // update k by adding it with subtext's length
-      //     k+= subtextLength;
-      //   }
-      // }
     }
     renderedText += "</p>";
 

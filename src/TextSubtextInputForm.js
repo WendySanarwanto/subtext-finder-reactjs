@@ -4,7 +4,6 @@ class TextSubtextInputForm extends React.Component {
   state = { text: '', subtext: '' };
 
   onProcessButtonClicked = (e) => {
-    // console.log('TextSubtextInputForm.process button is clicked.');
     this.props.onProcessClicked({
       text: this.state.text,
       subtext: this.state.subtext
