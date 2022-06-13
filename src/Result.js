@@ -31,30 +31,53 @@ class Result extends React.Component {
     const subtext = this.props.subtext;
     const subtextLength = subtext.length;
     const indexes = this.props.indexes;
-    let renderedText = "<p>";
+    let renderedText = "<p id='highlightedText'>";
     if (this.props.text && indexes && indexes.length > 0) {
-      let regexInput = subtext;
+      const text = this.props.text;
+      const textLength = text.length;
+
+      for (let i = 0, j=0; i < textLength; ){
+        const currentTextChar = text.charAt(i);
+        if (i === indexes[j]) {
+          renderedText += `<u>${subtext}</u>`
+          j++;
+          i += subtextLength;
+        } else if ((i > indexes[j]) && (i < indexes[j]+subtextLength)){
+          renderedText += `<u>${currentTextChar}</u>`;
+          i++;
+        }     
+        else if (i === indexes[j]+subtextLength) {
+          j++;
+        }
+        else {
+          renderedText += currentTextChar;
+          i++;
+        }
+      }
+
+      // let regexInput = subtext;
       // if (this.isNonAlphanumeric(subtext)) {
       //   regexInput = "\\"+subtext;
       // }
-      regexInput = this.handleDotChar(subtext);
-      regexInput = this.handleQuestionChar(regexInput);
-      regexInput = this.handleBackslashChar(regexInput);
-      let splittedWords = this.props.text.split( new RegExp(regexInput, 'i')  );
 
-      for(let i =0, j=0, k=0; i < splittedWords.length; i++) {
-        const chunk = splittedWords[i];
-        const index = indexes[j];
-        k += chunk.length;
-        renderedText += chunk;
-        if (index === k) {
-          renderedText += `<u>${subtext}</u>`;
-          // move to next index 
-          j++;
-          // update k by adding it with subtext's length
-          k+= subtextLength;
-        }
-      }
+      // regexInput = this.handleDotChar(subtext);
+      // regexInput = this.handleQuestionChar(regexInput);
+      // regexInput = this.handleBackslashChar(regexInput);
+      // let splittedWords = this.props.text.split( new RegExp(regexInput, 'i')  );
+
+      // for(let i =0, j=0, k=0; i < splittedWords.length; i++) {
+      //   const chunk = splittedWords[i];
+      //   const index = indexes[j];
+      //   k += chunk.length;
+      //   renderedText += chunk;
+      //   if (index === k) {
+      //     renderedText += `<u>${subtext}</u>`;
+      //     // move to next index 
+      //     j++;
+      //     // update k by adding it with subtext's length
+      //     k+= subtextLength;
+      //   }
+      // }
     }
     renderedText += "</p>";
 
