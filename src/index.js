@@ -10,6 +10,8 @@ import GetIndexesOfMatchedSubtext from './SubtextFinderApi';
 class App extends React.Component {
   state = { enableInputs: true, text: '', subtext: '', result: null, validationError: null, displayResultSegment: false };
 
+  validationErrorMessage = 'subtext cannot be blank or whitespaces only.';
+
   renderResultSegment = () => {
     if (this.state.displayResultSegment) {
       return <Result text={ this.state.text } subtext={ this.state.subtext } indexes={ this.state.result } />
@@ -30,7 +32,7 @@ class App extends React.Component {
 
       // Validate subtext - should not be blank
       if (!subtext || ( subtext.trim() === '')) {
-        this.setState({ validationError: "Subtext are not allower to be left as blank or as whitespaces only." });
+        this.setState({ validationError: this.validationErrorMessage });
       }
       else {
         this.setState({ validationError: null });
