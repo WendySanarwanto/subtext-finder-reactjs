@@ -97,4 +97,12 @@ test.describe('Find subtext from entered Text', () => {
 
         await doProcess(text, subtext, expected, page);
     });
+
+    test('FindQustionCharTest', async ({page}) => {
+        const text = 'How are you today ?';
+        const subtext = '?';
+        const expected = "19";
+
+        await doProcess(text, subtext, expected, page);
+    });
 });
